@@ -36,7 +36,7 @@ public class WeatherService {
 
 			JSONObject jsonObject = new JSONObject(requestInput);
 
-			if (!jsonObject.getString("pincode").isEmpty() && !jsonObject.getString("date").isEmpty()) {
+			if (!jsonObject.getString("pincode").isEmpty() && !jsonObject.getString("date").isEmpty() && jsonObject.getString("date").length()==10) {
 
 				URIBuilder uriBuilder = new URIBuilder(apiUrl);
 				uriBuilder.setParameter("q", jsonObject.getString("pincode"))
