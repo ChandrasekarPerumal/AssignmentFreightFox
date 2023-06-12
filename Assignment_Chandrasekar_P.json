@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "da35c5d5-72d1-4a6d-b6ac-7a8fe008fb60",
+		"name": "Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19322168"
+	},
+	"item": [
+		{
+			"name": "weathers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pincode\":\"560043\",\n    \"date\": \"10/10/2022\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/weather-api/weathers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"weather-api",
+						"weathers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fileUpload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/mglocadmin/Downloads/PF - E Nomination.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/s3/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"s3",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fileDownload",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
