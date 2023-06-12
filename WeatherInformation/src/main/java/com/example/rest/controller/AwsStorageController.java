@@ -27,8 +27,13 @@ public class AwsStorageController {
 	private AwsStorageService awsStorageService;
 
 	@PostMapping("/upload")
-	public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file ,@RequestParam("userName") String userName) {
-		return new ResponseEntity<>(awsStorageService.uploadFile(file,userName), HttpStatus.OK);
+	public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file ,@RequestParam("userName") String userName ) {
+		if(file.isEmpty() || userName.isEmpty()) {
+			return new ResponseEntity<>("Kindly verify Input data",HttpStatus.NOT_ACCEPTABLE);
+		}else {
+			return new ResponseEntity<>(awsStorageService.uploadFile(file,userName), HttpStatus.OK);
+		}
+		
 	}
 
 	@GetMapping("/download/{userName}/{fileName}")

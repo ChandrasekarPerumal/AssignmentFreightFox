@@ -1,5 +1,7 @@
 package com.example.rest.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import org.apache.http.client.methods.HttpGet;
@@ -36,7 +38,7 @@ public class WeatherService {
 
 			JSONObject jsonObject = new JSONObject(requestInput);
 
-			if (!jsonObject.getString("pincode").isEmpty() && !jsonObject.getString("date").isEmpty() && jsonObject.getString("date").length()==10) {
+			if (!jsonObject.getString("pincode").isEmpty() && validDate(jsonObject.getString("date"))) {
 
 				URIBuilder uriBuilder = new URIBuilder(apiUrl);
 				uriBuilder.setParameter("q", jsonObject.getString("pincode"))
@@ -73,7 +75,17 @@ public class WeatherService {
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 
+	public boolean validDate(String dateStr) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		try {
+			LocalDate date = LocalDate.parse(dateStr, formatter);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }

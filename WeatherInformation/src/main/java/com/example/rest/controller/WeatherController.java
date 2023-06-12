@@ -20,7 +20,9 @@ public class WeatherController {
 
 	@PostMapping("/pincode")
 	public ResponseEntity<Weather> updateSaveWeather(@RequestBody String requestInput) {
-			return weatherService.savePincodeWeatherInfo(requestInput);
+			
+		return weatherService.savePincodeWeatherInfo(requestInput);
+		  
 	}
 
 }
