@@ -83,7 +83,7 @@ public class WeatherService {
 		try {
 			LocalDate date = LocalDate.parse(dateStr, formatter);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 		return true;
